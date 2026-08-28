@@ -3589,3 +3589,77 @@ textarea {
   }
 
 }
+.btn-enviar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-enviar:not(:disabled) {
+  opacity: 1;
+  cursor: pointer;
+}
+/* =====================================================
+   MENSAJE DE ÉXITO DEL FORMULARIO
+   ===================================================== */
+
+.mensaje-formulario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 14px;
+  padding: 12px 14px;
+
+  background: #f1f8f4;
+  border: 1px solid #d7eadf;
+  border-radius: 10px;
+}
+
+
+/* ICONO */
+
+.mensaje-formulario-icono {
+  width: 32px;
+  height: 32px;
+
+  min-width: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #2e9d62;
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+
+/* TEXTO */
+
+.mensaje-formulario-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  text-align: left;
+}
+
+.mensaje-formulario-texto strong {
+  color: #1f5137;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mensaje-formulario-texto span {
+  color: #587263;
+
+  font-size: 11px;
+  line-height: 1.4;
+}

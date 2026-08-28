@@ -1,7 +1,8 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import emailjs from '@emailjs/browser';
 
 interface Tienda {
   nombre: string;
@@ -9,27 +10,22 @@ interface Tienda {
   url: string;
   }
   
-
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [
+    
+    FormsModule,
+    CommonModule
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('SouthCargo');
+  
   copiado = false;
   private cdr = inject(ChangeDetectorRef);
-  formulario = {
-    nombre: '',
-    email: '',
-    telefono: '',
-    mensaje: ''
-  };
-  
-
-  mensajeEnviado = false;
+   
 
   copiarTexto(texto: string): void {
 
@@ -92,19 +88,64 @@ export class App {
   email: '',
   telefono: '',
   mensaje: ''
-  };
-  
-  enviarFormulario(formulario: NgForm): void {
+};
 
-  if (formulario.invalid) {
+mensajeEnviado = false;
+enviandoFormulario = false;
+
+enviarFormulario(formulario: NgForm): void {
+
+  if (formulario.invalid || this.enviandoFormulario) {
     return;
   }
 
-  console.log('Formulario válido:', this.contacto);
+  this.enviandoFormulario = true;
+  this.mensajeEnviado = false;
 
-  }
+  const datos = {
+    nombre: this.contacto.nombre,
+    email: this.contacto.email,
+    telefono: this.contacto.telefono,
+    mensaje: this.contacto.mensaje
+  };
+
+  emailjs.send(
+    'service_4ljltny',
+    'template_5kcjb8b',
+    datos,
+    {
+      publicKey: '5O_Z9AmjPopoTYyO1'
+    }
+  )
+  .then(() => {
+
+    console.log('Formulario enviado correctamente');
+
+    this.mensajeEnviado = true;
+
+    formulario.resetForm();
+
+    setTimeout(() => {
+      this.mensajeEnviado = false;
+    }, 5000);
+
+  })
+  .catch((error) => {
+
+    console.error('Error al enviar el formulario:', error);
+
+    alert('No se pudo enviar el mensaje. Inténtalo nuevamente.');
+
+  })
+  .finally(() => {
+
+    this.enviandoFormulario = false;
+
+  });
+}
+  
   navbarVisible = true;
-private ultimoScroll = 0;
+  private ultimoScroll = 0;
 
 @HostListener('window:scroll', [])
 onWindowScroll(): void {
