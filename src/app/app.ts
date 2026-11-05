@@ -57,8 +57,8 @@ export class App {
 
 }
   menuAbierto = false;
-  pesoPaquete: number = 0;
-  precioPaquete: number = 0;
+  pesoPaquete: number | null = 0;
+  precioPaquete: number | null  = 0;
 
   flete: number = 0;
   igv: number = 0;

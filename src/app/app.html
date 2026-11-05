@@ -871,6 +871,8 @@
               min="0"
               step="0.01"
               [(ngModel)]="precioPaquete"
+              (focus)="precioPaquete === 0 ? precioPaquete = null : null"
+              (blur)="precioPaquete === null ? precioPaquete = 0 : null"
               placeholder="0.00">
 
           </div>
@@ -896,6 +898,8 @@
               min="0"
               step="0.1"
               [(ngModel)]="pesoPaquete"
+              (focus)="pesoPaquete === 0 ? pesoPaquete = null : null"
+              (blur)="pesoPaquete === null ? pesoPaquete = 0 : null"
               placeholder="0.00">
 
           </div>
@@ -1322,7 +1326,9 @@
             <i class="fa-brands fa-facebook-f"></i>
           </a>
 
-          <a href="https://www.instagram.com/southcargosac/" aria-label="Instagram">
+          <a href="https://www.instagram.com/southcargocourier/" aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer">
             <i class="fa-brands fa-instagram"></i>
           </a>
 
@@ -1463,7 +1469,10 @@
           <i class="fa-brands fa-facebook-f"></i>
         </a>
 
-        <a href="https://www.instagram.com/southcargosac/" aria-label="Instagram">
+        <a href="https://www.instagram.com/southcargocourier/" aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer">
+            
           <i class="fa-brands fa-instagram"></i>
         </a>
 
